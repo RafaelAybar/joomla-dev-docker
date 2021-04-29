@@ -25,8 +25,6 @@ RUN set -ex; \
 		gd \
 		gmp \
 		ldap \
-		mysqli \
-		pdo_mysql \
 		pdo_pgsql \
 		pgsql \
 		zip \
