@@ -11,9 +11,11 @@ services:
             - "80:80"
         networks:
             - demo
+        depends_on:
+            - phpfpm
 
-    phpfp:
-        container_name: phpfmp
+    phpfpm:
+        container_name: phpfpm
         image: rafadev/phpfpm-joomla1:0.0.1
         volumes:
             - ./joomla:/var/www
@@ -21,10 +23,14 @@ services:
             - "127.0.0.1:9000:9000"
         networks:
             - demo
+        depends_on:
+            - postgres
 
     postgres:
         container_name: postgres
         image: postgres:13
+        env_file:
+            - postgres.env
         ports:
             - "127.0.0.1:5432:5432"
         volumes:
