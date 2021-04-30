@@ -705,3 +705,4 @@
 /web.config.txt
 joomla/
 database/
+posgres.env

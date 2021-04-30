@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+    nginx:
+        container_name: nginx
+        image: nginx:1.20.0
+        volumes:
+            - ./joomla:/var/www
+            - ./nginx_conf/:/etc/nginx/conf.d/
+        ports:
+            - "80:80"
+        networks:
+            - demo
+
+    phpfp:
+        container_name: phpfmp
+        image: rafadev/phpfpm-joomla1:0.0.1
+        volumes:
+            - ./joomla:/var/www
+        ports:
+            - "127.0.0.1:9000:9000"
+        networks:
+            - demo
+
+    postgres:
+        container_name: postgres
+        image: postgres:13
+        ports:
+            - "127.0.0.1:5432:5432"
+        volumes:
+            - ./database:/var/lib/postgresql/data
+        networks:
+            - demo
+networks:
+    demo:
